@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test Suite">
+
+    <test name="Registered User and Login Logout Tests">
+        <classes>
+            <class name="WebTestRunner.Test_RegisterForm">
+                <methods>
+                    <include name="testRegister"/>
+                </methods>
+            </class>
+            <class name="WebTestRunner.Test_Login_Logout">
+                <methods>
+                    <include name="testLogin_Logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
