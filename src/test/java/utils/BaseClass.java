@@ -37,7 +37,7 @@ public class BaseClass {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        String environment = "QA";
+        String environment = "Dev";
         String connectionURL = UrlReader.getProperty(environment);
         if (connectionURL == null || connectionURL.isEmpty()) {
             throw new RuntimeException("URL not found for the environment: " + environment);
@@ -46,6 +46,7 @@ public class BaseClass {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         webDriver = new ChromeDriver(chromeOptions);
+        webDriver.manage().deleteAllCookies();
         webDriver.get(connectionURL);
         System.out.println("Page title is : -" + webDriver.getTitle());
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));

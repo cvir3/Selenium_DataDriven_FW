@@ -58,4 +58,11 @@ public class ExtentTestManager {
             test.log(LogStatus.INFO, message);
         }
     }
+
+    public static void logWarning(String message) {
+        ExtentTest test = getTest();
+        if (test != null) {
+            test.log(LogStatus.WARNING, message);
+        }
+    }
 }
