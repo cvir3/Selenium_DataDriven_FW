@@ -37,11 +37,16 @@ public class BaseClass {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
+        String environment = "QA";
+        String connectionURL = UrlReader.getProperty(environment);
+        if (connectionURL == null || connectionURL.isEmpty()) {
+            throw new RuntimeException("URL not found for the environment: " + environment);
+        }
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         webDriver = new ChromeDriver(chromeOptions);
-        webDriver.get("https://www.embark.org/?ref=madewithvuejs.com");
+        webDriver.get(connectionURL);
         System.out.println("Page title is : -" + webDriver.getTitle());
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     }
